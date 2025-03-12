@@ -1,5 +1,7 @@
 package com.example.berkleysocketclient;
 
+import javafx.scene.layout.VBox;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -31,6 +33,25 @@ public class Client {
             System.out.println("Erro ao enviar mensagem para o servidor");
             fecharTudo(socket, bufferedReader, bufferedWriter);
         }
+    }
+
+    public void receberMensagensServidor(VBox vboxMensagem) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(socket.isConnected()) {
+                    try {
+                        String mensagemServidor = bufferedReader.readLine();
+                        Controller.adicionarLabel(mensagemServidor, vboxMensagem);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        System.out.println("Erro ao receber mensagem do servidor");
+                        fecharTudo(socket, bufferedReader, bufferedWriter);
+                        break;
+                    }
+                }
+            }
+        }).start();
     }
 
     public void fecharTudo(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter) {
