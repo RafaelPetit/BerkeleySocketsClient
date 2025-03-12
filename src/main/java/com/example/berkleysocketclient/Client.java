@@ -23,6 +23,8 @@ public class Client {
         }
     }
 
+
+
     public void enviarMensagemServidor(String mensagemServidor) {
         try {
             bufferedWriter.write(mensagemServidor);

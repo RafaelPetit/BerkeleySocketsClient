@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,7 +38,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            client = new Client("localhost", 1234);
+            client = new Client(new Socket("localhost", 1234));
             System.out.println("Conectado ao servidor");
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,8 +66,8 @@ public class Controller implements Initializable {
                     Text texto = new Text(mensagemEnviar);
                     TextFlow textFlow = new TextFlow(texto);
 
-                    textFlow.setStyle("-fx-color: rgb(239, 242, 255)" +
-                            "-fx-background-color: rgb(15, 125, 252)" +
+                    textFlow.setStyle("-fx-color: rgb(239, 242, 255);" +
+                            "-fx-background-color: rgb(15, 125, 252);" +
                             "-fx-background-radius: 20px"
                     );
                     textFlow.setPadding(new Insets(5, 10, 5, 10));
@@ -91,7 +92,7 @@ public class Controller implements Initializable {
         TextFlow textFlow = new TextFlow(texto);
 
         textFlow.setStyle(
-                "-fx-background-color: rgb(233, 233, 235)" +
+                "-fx-background-color: rgb(233, 233, 235);" +
                         "-fx-background-radius: 20px"
         );
         textFlow.setPadding(new Insets(5, 10, 5, 10));
