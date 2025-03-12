@@ -21,6 +21,18 @@ public class Client {
         }
     }
 
+    public void enviarMensagemServidor(String mensagemServidor) {
+        try {
+            bufferedWriter.write(mensagemServidor);
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao enviar mensagem para o servidor");
+            fecharTudo(socket, bufferedReader, bufferedWriter);
+        }
+    }
+
     public void fecharTudo(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter) {
         try {
             if(bufferedReader != null) {

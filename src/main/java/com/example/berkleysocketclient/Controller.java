@@ -75,7 +75,7 @@ public class Controller implements Initializable {
                     hBox.getChildren().add(textFlow);
                     vboxMensagens.getChildren().add(hBox);
 
-                    client.enviarMensagemCliente(mensagemEnviar);
+                    client.enviarMensagemServidor(mensagemEnviar);
                     campoMensagem.clear();
                 }
             }
